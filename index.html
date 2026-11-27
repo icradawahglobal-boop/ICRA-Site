@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICRA | Islam and Comparative Religion Academy</title>
+    
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* DESIGN TOKENS */
+        :root {
+            --navy: #08305a;
+            --gold: #c39a3e;
+            --text-dark: #1a1a1a;
+            --text-light: #f4f4f4;
+            --bg-light: #ffffff;
+            --bg-offwhite: #f8f9fa;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        header.scrolled {
+            background-color: var(--bg-light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: -0.5px;
+            transition: color 0.3s ease;
+        }
+
+        header.scrolled .logo-text {
+            color: var(--navy);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            margin-left: 2rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        header.scrolled nav a {
+            color: var(--navy);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(8, 48, 90, 0.7), rgba(8, 48, 90, 0.8)), url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=2000&auto=format&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: var(--text-light);
+            padding-top: 4rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* STATS BAND */
+        .stats {
+            background-color: var(--navy);
+            color: var(--text-light);
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* ABOUT SECTION */
+        .section {
+            padding: 8rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* TOUR SECTION */
+        .tour-section {
+            background-color: var(--bg-offwhite);
+        }
+
+        .tour-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .tour-card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .tour-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .tour-content {
+            padding: 2rem;
+        }
+
+        .tour-content h4 {
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .tour-location {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--navy);
+            color: var(--text-light);
+            padding: 4rem 5% 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 3rem;
+        }
+
+        .footer-content h4 {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .stats { grid-template-columns: 1fr 1fr; }
+            .about-grid, .tour-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
+            nav { display: none; } /* Hide nav on mobile for simplicity */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="logo-text">ICRA</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#tour">Latest Tour</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Dawah has no borders.</h1>
+            <p>Welcome to the Islam & Comparative Religion Academy. Dedicated to sharing the message of Islam, equipping Dawah workers, and fostering meaningful dialogue across Africa and beyond.</p>
+            <a href="#about" class="btn">Discover Our Mission</a>
+        </div>
+    </section>
+
+    <!-- STATS BAND -->
+    <section class="stats">
+        <div class="stat-item">
+            <h3>20+</h3>
+            <p>Countries Reached</p>
+        </div>
+        <div class="stat-item">
+            <h3>50,000+</h3>
+            <p>Books & Materials</p>
+        </div>
+        <div class="stat-item">
+            <h3>1,000+</h3>
+            <p>Du'at Trained</p>
+        </div>
+        <div class="stat-item">
+            <h3>600+</h3>
+            <p>Mosques Visited</p>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2>About ICRA</h2>
+            <p>Working through universities, the media, and local communities with respect for everyone we meet.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Why we do this</h3>
+                <p>In much of Sub-Saharan Africa, Muslims are a small minority and Islamic literature is hard to find. Too often, people learn about Islam from those who are not Muslim, and misunderstandings follow. We want more Muslims to speak for themselves, and we want to give people the chance to hear about Islam directly.</p>
+                <h3>How we work</h3>
+                <p>We hold lectures, workshops, and training programmes with university students and scholars. We speak on national media in each country we visit, distribute Islamic literature where it is scarce, and connect with callers to Islam who are already working on the ground.</p>
+            </div>
+            <div class="about-image">
+                <!-- Placeholder for an actual tour photo -->
+                <img src="https://images.unsplash.com/photo-1574023058517-bd4c7b2d5183?q=80&w=1000&auto=format&fit=crop" alt="ICRA Dawah Work">
+            </div>
+        </div>
+    </section>
+
+    <!-- LATEST TOUR -->
+    <section id="tour" class="section tour-section">
+        <div class="section-header">
+            <h2>Our Latest Tour</h2>
+            <p>A journey through Southern Africa and the Indian Ocean.</p>
+        </div>
+        <div class="tour-grid">
+            
+            <div class="tour-card">
+                <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=800&auto=format&fit=crop" alt="Lusaka">
+                <div class="tour-content">
+                    <span class="tour-location">Lusaka, Zambia</span>
+                    <h4>Embracing Islam & Street Dawah</h4>
+                    <p>Alhamdulillah, we witnessed two young men embrace Islam and engaged in fruitful Table Dawah on the streets, sharing literature and answering questions.</p>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <img src="https://images.unsplash.com/photo-1589139365625-892766c8c747?q=80&w=800&auto=format&fit=crop" alt="Gaborone">
+                <div class="tour-content">
+                    <span class="tour-location">Gaborone, Botswana</span>
+                    <h4>Media & Training Camps</h4>
+                    <p>Honored to share the message of Islam on Duma FM, followed by a Dawah training camp hosted by Jamia Islamia Botswana and a meeting with Minister Phenyo Butale.</p>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <img src="https://images.unsplash.com/photo-1590393669088-6dbd35b8311d?q=80&w=800&auto=format&fit=crop" alt="Soweto">
+                <div class="tour-content">
+                    <span class="tour-location">Soweto, South Africa</span>
+                    <h4>Vocational Training & Khutbah</h4>
+                    <p>A successful Friday Sermon at Dhlamini Junction Masjid, followed by a visit to the Soweto Muslim Shura Technical Training Centre, empowering youth with free education.</p>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop" alt="Mauritius">
+                <div class="tour-content">
+                    <span class="tour-location">Port Louis, Mauritius</span>
+                    <h4>Courtesy Visit & Media</h4>
+                    <p>A courtesy visit to the Lord Mayor of Port Louis. The mission was also proudly featured in The Star newspaper.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h4>Partner with ICRA</h4>
+            <p>Email: admin@icraglobal.org</p>
+            <p>WhatsApp: +254 707004577</p>
+            <p>Suite 45, 4th Floor Nextgen Mall, Mombasa Road, Nairobi</p>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Islam and Comparative Religion Academy. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- SIMPLE SCRIPT FOR HEADER SCROLL EFFECT -->
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
